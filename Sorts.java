@@ -8,10 +8,9 @@ public class Sorts{
 
     //}
 
-    boolean swapped = false;
-    boolean start = true;
+    boolean swapped = true;
     int index = 0;
-    while (start || swapped) {
+    while (swapped) {
       swapped = false;
       for (int i = 0; i<data.length-index-1; i++) {
         if (data[i]>data[i+1]) {
@@ -21,7 +20,6 @@ public class Sorts{
           swapped = true;
         }
       }
-      start = false;
       index++;
     }
   }
