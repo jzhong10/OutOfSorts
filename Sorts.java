@@ -4,18 +4,20 @@ public class Sorts{
   *@param data  the elements to be sorted.
   */
   public static void bubbleSort(int[] data) {
-    if (data.length<=1) {
-      return data;
-    }
+    //if (data.length<=1) {
+
+    //}
+
     boolean swapped = false;
     boolean start = true;
     int index = 0;
     while (start || swapped) {
-      for (int i = 0; i<data.length-index; i++) {
+      swapped = false;
+      for (int i = 0; i<data.length-index-1; i++) {
         if (data[i]>data[i+1]) {
           int temp = data[i];
           data[i] = data[i+1];
-          data[i+1] = temp
+          data[i+1] = temp;
           swapped = true;
         }
       }
