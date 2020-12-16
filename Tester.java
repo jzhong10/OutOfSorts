@@ -69,5 +69,49 @@ public class Tester {
     dprint(Arrays.toString(a));
     Sorts.bubbleSort(a);
     dprint(Arrays.toString(a));
+
+    a = new int[] {1,1,1,0,1,1};
+    dprint("");
+    dprint(Arrays.toString(a));
+    Sorts.bubbleSort(a);
+    dprint(Arrays.toString(a));
+
+    int ha = 100;
+    a = new int[ha];
+    rng = new Random();
+    for(int i =  0; i < ha/2; i++) {
+      int n = (rng.nextInt() % 1000);
+      a[2*i] = n;
+      a[2*i+1] = n;
+    }
+
+    dprint("");
+    dprint(Arrays.toString(a));
+    Sorts.bubbleSort(a);
+    dprint(Arrays.toString(a));
+    int[] eTest = Arrays.copyOf(a, a.length);
+    dprint(Arrays.equals(eTest, a));
+
+    ha = 20;
+    a = new int[ha];
+    rng = new Random();
+    for(int i =  0; i < ha/2; i++) {
+      int n = (rng.nextInt() % 1000);
+      a[2*i] = n;
+      a[2*i+1] = n;
+    }
+
+    Arrays.sort(a);
+    b = new int[a.length];
+    for (int i = 0; i<a.length; i++) {
+      b[i] = a[a.length-1-i];
+    }
+    dprint("");
+    dprint(Arrays.toString(b));
+    Sorts.bubbleSort(b);
+    dprint(Arrays.toString(b));
+    eTest = Arrays.copyOf(b, b.length);
+    dprint(Arrays.equals(eTest, b));
+
   }
 }
