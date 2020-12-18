@@ -25,7 +25,7 @@ public class Tester {
       nums[i] = n;
       numsT[i] = n;
     }
-
+/*
     dprint(Arrays.toString(nums));
     dprint("");
 
@@ -112,6 +112,14 @@ public class Tester {
     dprint(Arrays.toString(b));
     eTest = Arrays.copyOf(b, b.length);
     dprint(Arrays.equals(eTest, b));
-
+*/
+    dprint(Arrays.toString(nums));
+    dprint(Arrays.toString(numsT));
+    dprint("");
+    Sorts.selectionSort(nums);
+    Arrays.sort(numsT);
+    dprint(Arrays.toString(nums));
+    dprint(Arrays.toString(numsT));
+    dprint(Arrays.equals(nums, numsT));
   }
 }
