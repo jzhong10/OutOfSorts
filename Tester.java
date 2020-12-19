@@ -23,6 +23,32 @@ public class Tester {
     return ttt;
   }
 
+  public static void reshuffle(int n, Random rng, int[] nums, int[] numsT) {
+    for(int i = 0; i < n; i++) {
+      int x = (rng.nextInt() % 1000);
+      nums[i] = x;
+      numsT[i] = x;
+    }
+  }
+
+  public static void reshuffle2(int n, Random rng, int[] nums, int[] numsT) {
+    for(int i = 0; i < n/2; i++) {
+      int x = (rng.nextInt() % 1000);
+      nums[2*i+1] = x;
+      nums[2*i] = x;
+      numsT[2*i+1] = x;
+      numsT[2*i] = x;
+    }
+  }
+
+  public static void reshuffle3(int n, Random rng, int[] nums, int[] numsT) {
+    int x = (rng.nextInt() % 1000);
+    for(int i = 0; i < n; i++) {
+      nums[i] = x;
+      numsT[i] = x;
+    }
+  }
+
   public static void main(String[] args) {
     int[] nums = new int[10];
     int[] numsT = new int[10];
@@ -32,118 +58,14 @@ public class Tester {
       nums[i] = n;
       numsT[i] = n;
     }
-/*
-    dprint(Arrays.toString(nums));
-    dprint("");
+    int n = 0;
 
-    Sorts.bubbleSort(nums);
-    dprint(Arrays.toString(nums));
-
-    Arrays.sort(numsT);
-    dprint(Arrays.toString(numsT));
-
-    dprint(Arrays.equals(nums, numsT));
-
-    for (int j = 0; j<200; j++) {
-      rng = new Random(j);
-      for (int i =  0; i < 10; i++) {
-        int n = (rng.nextInt() % 1000);
-        nums[i] = n;
-        numsT[i] = n;
-      }
-      Sorts.bubbleSort(nums);
-      Arrays.sort(numsT);
-      //dprint(Arrays.equals(nums, numsT));
-
-      if (!Arrays.equals(nums, numsT)) {
-        dprint(Arrays.equals(nums, numsT));
-      }
-    }
-
-    int[] a = {1};
-    int[] b = {};
-    dprint("");
-    dprint(Arrays.toString(a));
-    Sorts.bubbleSort(a);
-    dprint(Arrays.toString(a));
-    dprint("");
-    dprint(Arrays.toString(b));
-    Sorts.bubbleSort(b);
-    dprint(Arrays.toString(b));
-
-    a = new int[] {2, 0};
-    dprint("");
-    dprint(Arrays.toString(a));
-    Sorts.bubbleSort(a);
-    dprint(Arrays.toString(a));
-
-    a = new int[] {1,1,1,0,1,1};
-    dprint("");
-    dprint(Arrays.toString(a));
-    Sorts.bubbleSort(a);
-    dprint(Arrays.toString(a));
-
-    int ha = 100;
-    a = new int[ha];
+    dprint("General Testing for all sorts");
     rng = new Random();
-    for(int i =  0; i < ha/2; i++) {
-      int n = (rng.nextInt() % 1000);
-      a[2*i] = n;
-      a[2*i+1] = n;
-    }
-
-    dprint("");
-    dprint(Arrays.toString(a));
-    Sorts.bubbleSort(a);
-    dprint(Arrays.toString(a));
-    int[] eTest = Arrays.copyOf(a, a.length);
-    dprint(Arrays.equals(eTest, a));
-
-    ha = 20;
-    a = new int[ha];
-    rng = new Random();
-    for(int i =  0; i < ha/2; i++) {
-      int n = (rng.nextInt() % 1000);
-      a[2*i] = n;
-      a[2*i+1] = n;
-    }
-
-    Arrays.sort(a);
-    b = new int[a.length];
-    for (int i = 0; i<a.length; i++) {
-      b[i] = a[a.length-1-i];
-    }
-    dprint("");
-    dprint(Arrays.toString(b));
-    Sorts.bubbleSort(b);
-    dprint(Arrays.toString(b));
-    eTest = Arrays.copyOf(b, b.length);
-    dprint(Arrays.equals(eTest, b));
-*/
-    dprint(Arrays.toString(nums));
-    dprint(Arrays.toString(numsT));
-    dprint("");
-    Sorts.selectionSort(nums);
-    Arrays.sort(numsT);
-    dprint(Arrays.toString(nums));
-    dprint(Arrays.toString(numsT));
-    dprint(Arrays.equals(nums, numsT));
-
-    rng = new Random();
-    int n = 1000;
-    nums = new int[n];
-    numsT = new int[n];
-    for(int i =  0; i < n; i++) {
-      int x = (rng.nextInt() % 1000);
-      nums[i] = x;
-      numsT[i] = x;
-    }
-    Sorts.selectionSort(nums);
-    Arrays.sort(numsT);
-    dprint(Arrays.equals(nums, numsT));
-
-    rng = new Random(2);
     n = 10;
+    if (args.length>0) {
+      n = Integer.parseInt(args[0]);
+    }
     nums = new int[n];
     numsT = new int[n];
     for(int i =  0; i < n; i++) {
@@ -151,16 +73,96 @@ public class Tester {
       nums[i] = x;
       numsT[i] = x;
     }
-    dprint("InsertionSort Testing");
-    dprint(Arrays.toString(nums));
-    System.out.println();
-    //nums = new int[] {-216, -79, 744, 135, 778};
-    Sorts.insertionSort(nums);
+    dprint("---Random Numbers tester---");
+    dprint("bubbleSort() ");
     Arrays.sort(numsT);
-    dprint("");
-    dprint(Arrays.toString(nums));
-    dprint(Arrays.toString(numsT));
+    Sorts.bubbleSort(nums);
+    dprint(Arrays.equals(nums, numsT));
+    dprint("...");
+    dprint("selectionSort() ");
+    reshuffle(n, rng, nums, numsT);
+    Arrays.sort(numsT);
+    Sorts.selectionSort(nums);
+    dprint(Arrays.equals(nums, numsT));
+    dprint("...");
+    dprint("insertionSort() ");
+    reshuffle(n, rng, nums, numsT);
+    Arrays.sort(numsT);
+    Sorts.insertionSort(nums);
 
+    dprint(Arrays.equals(nums, numsT));
+
+    reshuffle(n, rng, nums, numsT);
+
+    dprint("");
+    dprint("---Reverse Sorted Arrays---");
+
+    dprint("bubbleSort() ");
+    Arrays.sort(numsT);
+    nums = revArray(Arrays.copyOf(numsT, numsT.length));
+    Sorts.bubbleSort(nums);
+    dprint(Arrays.equals(nums, numsT));
+
+    dprint("...");
+    dprint("selectionSort() ");
+
+    reshuffle(n, rng, nums, numsT);
+
+    Arrays.sort(numsT);
+    nums = revArray(Arrays.copyOf(numsT, numsT.length));
+    Sorts.selectionSort(nums);
+    dprint(Arrays.equals(nums, numsT));
+    dprint("...");
+    dprint("insertionSort() ");
+
+    reshuffle(n, rng, nums, numsT);
+
+    Arrays.sort(numsT);
+    nums = revArray(Arrays.copyOf(numsT, numsT.length));
+    Sorts.insertionSort(nums);
+
+    dprint(Arrays.equals(nums, numsT));
+
+    dprint("");
+
+    reshuffle2(n, rng, nums, numsT);
+    dprint("---Half Duplicates Tester---");
+    dprint("bubbleSort() ");
+    Arrays.sort(numsT);
+    Sorts.bubbleSort(nums);
+    dprint(Arrays.equals(nums, numsT));
+    dprint("...");
+    dprint("selectionSort() ");
+    reshuffle2(n, rng, nums, numsT);
+    Arrays.sort(numsT);
+    Sorts.selectionSort(nums);
+    dprint(Arrays.equals(nums, numsT));
+    dprint("...");
+    dprint("insertionSort() ");
+    reshuffle2(n, rng, nums, numsT);
+    Arrays.sort(numsT);
+    Sorts.insertionSort(nums);
+    dprint(Arrays.equals(nums, numsT));
+
+    dprint("");
+
+    reshuffle3(n, rng, nums, numsT);
+    dprint("---All Duplicates Tester---");
+    dprint("bubbleSort() ");
+    Arrays.sort(numsT);
+    Sorts.bubbleSort(nums);
+    dprint(Arrays.equals(nums, numsT));
+    dprint("...");
+    dprint("selectionSort() ");
+    reshuffle3(n, rng, nums, numsT);
+    Arrays.sort(numsT);
+    Sorts.selectionSort(nums);
+    dprint(Arrays.equals(nums, numsT));
+    dprint("...");
+    dprint("insertionSort() ");
+    reshuffle3(n, rng, nums, numsT);
+    Arrays.sort(numsT);
+    Sorts.insertionSort(nums);
     dprint(Arrays.equals(nums, numsT));
   }
 }
