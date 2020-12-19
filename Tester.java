@@ -15,6 +15,13 @@ public class Tester {
       System.out.println("" + b);
     }
   }
+  public static int[] revArray(int[] arr) {
+    int[] ttt = new int[arr.length];
+    for (int i = 0; i<arr.length; i++) {
+      ttt[i] = arr[arr.length-i-1];
+    }
+    return ttt;
+  }
 
   public static void main(String[] args) {
     int[] nums = new int[10];
@@ -120,6 +127,40 @@ public class Tester {
     Arrays.sort(numsT);
     dprint(Arrays.toString(nums));
     dprint(Arrays.toString(numsT));
+    dprint(Arrays.equals(nums, numsT));
+
+    rng = new Random();
+    int n = 1000;
+    nums = new int[n];
+    numsT = new int[n];
+    for(int i =  0; i < n; i++) {
+      int x = (rng.nextInt() % 1000);
+      nums[i] = x;
+      numsT[i] = x;
+    }
+    Sorts.selectionSort(nums);
+    Arrays.sort(numsT);
+    dprint(Arrays.equals(nums, numsT));
+
+    rng = new Random(2);
+    n = 10;
+    nums = new int[n];
+    numsT = new int[n];
+    for(int i =  0; i < n; i++) {
+      int x = (rng.nextInt() % 1000);
+      nums[i] = x;
+      numsT[i] = x;
+    }
+    dprint("InsertionSort Testing");
+    dprint(Arrays.toString(nums));
+    System.out.println();
+    //nums = new int[] {-216, -79, 744, 135, 778};
+    Sorts.insertionSort(nums);
+    Arrays.sort(numsT);
+    dprint("");
+    dprint(Arrays.toString(nums));
+    dprint(Arrays.toString(numsT));
+
     dprint(Arrays.equals(nums, numsT));
   }
 }
