@@ -44,39 +44,20 @@ shift everything over and add it in
   public static void insertionSort(int[] data) {
     for (int i = 1; i<data.length; i++) {
       if (data[i]<data[i-1]) {
-        System.out.println(Arrays.toString(data));
-
         int current = data[i];
         int index = i-1;
-
+        //find where to insert
         while (index>=0 && data[i]<data[index]) {
-          System.out.println(data[index] + ", " + data[i] + ", " + index);
           index--;
-
         }
         index++;
-        //System.out.println(index + ", " + data[index] + ", " + current);
-
+        //shift everything over
         for (int j = i; j>index; j--) {
           data[j] = data[j-1];
         }
+        //insert value
         data[index] = current;
-        //System.out.println(Arrays.toString(data));
-        //System.out.println();
       }
     }
   }
-
 }
-
-/* Dead Code
-int index = i-1;
-while (index>0 && data[i]<data[index]) {
-  index--;
-}
-int place = data[i];
-for (int j = i; j>index; j--) {
-  data[j] = data[j-1];
-}
-data[index] = place;
-*/
