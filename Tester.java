@@ -62,7 +62,8 @@ public class Tester {
 
     dprint("General Testing for all sorts");
     rng = new Random();
-    n = 10;
+    n = 100;
+    boolean allTrue = true;
     if (args.length>0) {
       n = Integer.parseInt(args[0]);
     }
@@ -78,20 +79,32 @@ public class Tester {
     Arrays.sort(numsT);
     Sorts.bubbleSort(nums);
     dprint(Arrays.equals(nums, numsT));
-    dprint("...");
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
+    dprint("..");
     dprint("selectionSort() ");
     reshuffle(n, rng, nums, numsT);
+
     Arrays.sort(numsT);
     Sorts.selectionSort(nums);
+
     dprint(Arrays.equals(nums, numsT));
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
     dprint("...");
     dprint("insertionSort() ");
+
     reshuffle(n, rng, nums, numsT);
+
     Arrays.sort(numsT);
     Sorts.insertionSort(nums);
 
     dprint(Arrays.equals(nums, numsT));
-
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
     reshuffle(n, rng, nums, numsT);
 
     dprint("");
@@ -102,8 +115,10 @@ public class Tester {
     nums = revArray(Arrays.copyOf(numsT, numsT.length));
     Sorts.bubbleSort(nums);
     dprint(Arrays.equals(nums, numsT));
-
-    dprint("...");
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
+    dprint("..");
     dprint("selectionSort() ");
 
     reshuffle(n, rng, nums, numsT);
@@ -112,6 +127,9 @@ public class Tester {
     nums = revArray(Arrays.copyOf(numsT, numsT.length));
     Sorts.selectionSort(nums);
     dprint(Arrays.equals(nums, numsT));
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
     dprint("...");
     dprint("insertionSort() ");
 
@@ -122,7 +140,9 @@ public class Tester {
     Sorts.insertionSort(nums);
 
     dprint(Arrays.equals(nums, numsT));
-
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
     dprint("");
 
     reshuffle2(n, rng, nums, numsT);
@@ -131,19 +151,27 @@ public class Tester {
     Arrays.sort(numsT);
     Sorts.bubbleSort(nums);
     dprint(Arrays.equals(nums, numsT));
-    dprint("...");
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
+    dprint("..");
     dprint("selectionSort() ");
     reshuffle2(n, rng, nums, numsT);
     Arrays.sort(numsT);
     Sorts.selectionSort(nums);
     dprint(Arrays.equals(nums, numsT));
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
     dprint("...");
     dprint("insertionSort() ");
     reshuffle2(n, rng, nums, numsT);
     Arrays.sort(numsT);
     Sorts.insertionSort(nums);
     dprint(Arrays.equals(nums, numsT));
-
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
     dprint("");
 
     reshuffle3(n, rng, nums, numsT);
@@ -152,17 +180,39 @@ public class Tester {
     Arrays.sort(numsT);
     Sorts.bubbleSort(nums);
     dprint(Arrays.equals(nums, numsT));
-    dprint("...");
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
+    dprint("..");
     dprint("selectionSort() ");
     reshuffle3(n, rng, nums, numsT);
     Arrays.sort(numsT);
     Sorts.selectionSort(nums);
     dprint(Arrays.equals(nums, numsT));
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
     dprint("...");
     dprint("insertionSort() ");
     reshuffle3(n, rng, nums, numsT);
     Arrays.sort(numsT);
     Sorts.insertionSort(nums);
     dprint(Arrays.equals(nums, numsT));
+    if (!Arrays.equals(nums, numsT)) {
+      allTrue = false;
+    }
+
+    dprint("");
+    dprint("Overall Status:");
+    if (allTrue) {
+
+      dprint("all True");
+    } else {
+      dprint("false");
+    }
+    if (args.length==0) {
+      dprint("spam args[0] to change datasize");
+    }
+
   }
 }
