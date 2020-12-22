@@ -47,10 +47,15 @@ shift everything over and add it in
         int current = data[i];
         int index = i-1;
         //find where to insert
+        /*
         while (index>=0 && data[i]<data[index]) {
           index--;
         }
         index++;
+        */
+        while (index>0 && data[i]<data[index-1]) {
+          index--;
+        }
         //shift everything over
         for (int j = i; j>index; j--) {
           data[j] = data[j-1];
